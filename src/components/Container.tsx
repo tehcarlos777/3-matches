@@ -21,26 +21,27 @@ const matches = [
 ];
 
 function Container() {
-    const [time, setTime] = useState(0);
+    const [matchTime, setMatchTime] = useState(0);
     const [buttonText, setButtonText] = useState("Start");
     const [scoreBoard, setScoreBoard] = useState([0,0,0,0,0,0]);
     const [internalId, setInternalId] = useState(0);
 
     const updateTime = () => {
-        var tmpTime = time;
+        var tmpMatchTime = matchTime;
         let intervalHandle: NodeJS.Timeout = setInterval(function(){
-            if(tmpTime > 90){
+            if(tmpMatchTime >= 90){
                 clearInterval(intervalHandle);
                 updateScore();
                 console.log("Finished");
-            } else if(tmpTime % 10 === 0 && tmpTime !== 0){
+                setButtonText("Restart");
+            } else if(tmpMatchTime % 10 === 0 && tmpMatchTime !== 0){
                 updateScore();
                 console.log("Goal!!!");
             } else {
-                console.log(tmpTime + " minute");
+                console.log(tmpMatchTime + " minute");
             }
-            setTime(tmpTime);
-            tmpTime += 1;
+            setMatchTime(tmpMatchTime);
+            tmpMatchTime += 1;
         }, 1000);
 
         // @ts-ignore
@@ -59,7 +60,7 @@ function Container() {
         else {
             setButtonText("Start");
             setScoreBoard([0,0,0,0,0,0]);
-            setTime(0);
+            setMatchTime(0);
         }
     }
 
@@ -96,7 +97,7 @@ function Container() {
                 <Match
                     key={matches[2].id} homeTeam={matches[2].homeTeam} awayTeam={matches[2].awayTeam} homeScore={scoreBoard[4]} awayScore={scoreBoard[5]}
                 />
-            <TotalGoals totalGoals={getTotalGoals()}/>
+            <TotalGoals totalGoals={getTotalGoals()} />
         </div>
     );
 }
