@@ -1,6 +1,8 @@
 import React from "react";
 
-function Score(props: any) {
+type ScoreProps = { homeScore: number, awayScore: number };
+
+function Score(props: ScoreProps) {
     return (
         <div>
             {props.homeScore}:{props.awayScore}

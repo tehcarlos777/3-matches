@@ -1,6 +1,8 @@
 import React from "react";
 
-function TotalGoals(props: any) {
+type TotalGoalsProps = { totalGoals: number };
+
+function TotalGoals(props: TotalGoalsProps) {
     return (
         <div id="total-goals">
             Total goals: {props.totalGoals}
