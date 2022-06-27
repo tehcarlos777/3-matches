@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Container from "./components/Container";
 
-function App() {
+const App = () => {
     return (
         <div className="App">
             <Container/>

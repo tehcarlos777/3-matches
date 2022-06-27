@@ -20,21 +20,21 @@ const matches = [
     }
 ];
 
-function Container() {
+const Container = () => {
     const [matchTime, setMatchTime] = useState(0);
     const [buttonText, setButtonText] = useState("Start");
-    const [scoreBoard, setScoreBoard] = useState([0,0,0,0,0,0]);
+    const [scoreBoard, setScoreBoard] = useState([0, 0, 0, 0, 0, 0]);
     const [internalId, setInternalId] = useState(0);
 
     const updateTime = () => {
-        var tmpMatchTime = matchTime;
-        let intervalHandle: NodeJS.Timeout = setInterval(function(){
-            if(tmpMatchTime >= 90){
+        let tmpMatchTime = matchTime;
+        const intervalHandle: NodeJS.Timeout = setInterval(function () {
+            if (tmpMatchTime >= 90) {
                 clearInterval(intervalHandle);
                 updateScore();
-                console.log("Finished");
                 setButtonText("Restart");
-            } else if(tmpMatchTime % 10 === 0 && tmpMatchTime !== 0){
+                console.log("Finished");
+            } else if (tmpMatchTime % 10 === 0 && tmpMatchTime !== 0) {
                 updateScore();
                 console.log("Goal!!!");
             } else {
@@ -48,31 +48,29 @@ function Container() {
         setInternalId(intervalHandle);
     }
 
-    function handleClick() {
-        if(buttonText === "Start") {
+    const handleClick = () => {
+        if (buttonText === "Start") {
             setButtonText("Finish");
             updateTime()
-        }
-        else if(buttonText === "Finish") {
+        } else if (buttonText === "Finish") {
             setButtonText("Restart");
             clearInterval(internalId);
-        }
-        else {
+        } else {
             setButtonText("Start");
-            setScoreBoard([0,0,0,0,0,0]);
+            setScoreBoard([0, 0, 0, 0, 0, 0]);
             setMatchTime(0);
         }
     }
 
 
-    function getRandomIntInclusive(min: number, max: number) {
+    const getRandomIntInclusive = (min: number, max: number) => {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    function updateScore() {
-        const i = getRandomIntInclusive(0,5);
+    const updateScore = () => {
+        const i = getRandomIntInclusive(0, 5);
         setScoreBoard((prevScoreBoard) => {
             return {
                 ...prevScoreBoard,
@@ -81,23 +79,26 @@ function Container() {
         })
     }
 
-    function getTotalGoals(){
-        return scoreBoard[0]+scoreBoard[1]+scoreBoard[2]+scoreBoard[3]+scoreBoard[4]+scoreBoard[5]
+    const getTotalGoals = () => {
+        return scoreBoard[0] + scoreBoard[1] + scoreBoard[2] + scoreBoard[3] + scoreBoard[4] + scoreBoard[5]
     }
 
     return (
         <div id="container">
             <button onClick={handleClick} id="button">{buttonText}</button>
-                <Match
-                    key={matches[0].id} homeTeam={matches[0].homeTeam} awayTeam={matches[0].awayTeam} homeScore={scoreBoard[0]} awayScore={scoreBoard[1]}
-                />
-                <Match
-                    key={matches[1].id} homeTeam={matches[1].homeTeam} awayTeam={matches[1].awayTeam} homeScore={scoreBoard[2]} awayScore={scoreBoard[3]}
-                />
-                <Match
-                    key={matches[2].id} homeTeam={matches[2].homeTeam} awayTeam={matches[2].awayTeam} homeScore={scoreBoard[4]} awayScore={scoreBoard[5]}
-                />
-            <TotalGoals totalGoals={getTotalGoals()} />
+            <Match
+                key={matches[0].id} homeTeam={matches[0].homeTeam} awayTeam={matches[0].awayTeam}
+                homeScore={scoreBoard[0]} awayScore={scoreBoard[1]}
+            />
+            <Match
+                key={matches[1].id} homeTeam={matches[1].homeTeam} awayTeam={matches[1].awayTeam}
+                homeScore={scoreBoard[2]} awayScore={scoreBoard[3]}
+            />
+            <Match
+                key={matches[2].id} homeTeam={matches[2].homeTeam} awayTeam={matches[2].awayTeam}
+                homeScore={scoreBoard[4]} awayScore={scoreBoard[5]}
+            />
+            <TotalGoals totalGoals={getTotalGoals()}/>
         </div>
     );
 }
