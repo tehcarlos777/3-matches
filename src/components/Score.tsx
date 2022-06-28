@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type ScoreProps = { homeScore: number, awayScore: number };
 
@@ -8,6 +8,6 @@ const Score = (props: ScoreProps) => {
             {props.homeScore}:{props.awayScore}
         </div>
     );
-}
+};
 
 export default Score;
