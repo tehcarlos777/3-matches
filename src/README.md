@@ -19,6 +19,7 @@ User can start, finish and restart a simulation.
 - TypeScript 4.7.4
 - React 18.2.0
 - Eslint 8.18.0
+- Jest 27.5.2
 
 <br>
 
