@@ -1,12 +1,12 @@
-# Sportradar Technical Test
+# 3 matches simulation
 
 ## Introduction
 
 Simulation of 3 football matches.
 - Germany vs Poland
 - Brazil vs Mexico
-- Argentina vs Uruguay
-User can start, finish and restart a simulation.
+- Argentina vs Uruguay 
+- User can start, finish and restart a simulation.
 - Start button start simulation, first goal will be scored after 10 seconds, last goal after 90 seconds.
 - Finish ends the simulation, score will not be changed
 - Restart reset time and score for all teams 
